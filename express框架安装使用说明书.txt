@@ -1,0 +1,102 @@
+1. 打开命令行 执行 npm -g install express -generator命令
+	选择在全局(-g)安装 express  
+	generator 构造器(构建器) 帮助我们快速的实现项目基本框架结构
+
+2. 在指定的目录下创建我们的项目目录
+		a. 手动创建
+		b. 使用express构建器创建
+
+	express 项目名称	
+		以 express mall 为例，执行该命令会在对应位置产生以下目录结构
+		create : mall			// 创建的目录
+	   create : mall/package.json // 设置该项目的基本信息、包的依赖关系
+	   create : mall/app.js		// 项目的入口文件
+	   create : mall/public		// 存放项目中所有的静态资源文件(img,css,js)
+	   create : mall/routes		// 路由目录
+	   create : mall/routes/index.js	// index 路由文件
+	   create : mall/routes/users.js	// users 路由
+	   create : mall/public/images		// 存放图片
+	   create : mall/public/stylesheets	// css文件目录
+	   create : mall/public/stylesheets/style.css	// 默认的css文件
+	   create : mall/public/javascripts	// 存放的js文件
+	   create : mall/views			// 模板目录
+
+	   // 以.jade结尾的模板统一是 jade
+	   // 我们实际项目选择使用ejs
+	   create : mall/views/index.jade	// index模板
+	   create : mall/views/layout.jade	// layout 模板
+	   create : mall/views/error.jade	// error 模板
+	   create : mall/bin			// 包含了命令的目录
+	   create : mall/bin/www		// 启动文件
+
+	   // 安装依赖包
+	   install dependencies:
+	   	// 切换到项目目录
+	   	// npm install 按照package.json文件安装依赖包
+	     $ cd mall && npm install
+
+	   // 运行项目
+	   run the app:
+	   		// npm start 相当于执行了package.json文件中scripts对应的命令
+	     $ DEBUG=mall:* npm start
+
+3. 在地址栏输入 localhost:3000 查看效果
+
+4. 关于路由
+	路由其实就是url地址
+
+	在app.js入口文件中
+		// 表示加载当前目录下routes/index.js
+		var index = require('./routes/index');
+
+		// 创建的项目
+		var app = express();
+
+		// app.use() 绑定路由地址到指定的文件
+
+		// 如果/路由，表示我现在要加载index
+		app.use('/', index);	
+
+		// 在路由目录下的index.js // 
+
+	路由目录 routes
+
+	模板目录 views view 视图
+		在app.js入口文件中	
+			// 设置模板的目录
+			app.set('views', path.join(__dirname, 'views'));
+
+			// 设置模板的引擎 默认系统使用是jade
+			app.set('view engine', 'jade');
+
+			修改系统默认的模板引擎
+				// 下载ejs模块
+				app.set('view engine','ejs')
+
+				//在命令行中使用
+				express --view 模板名称
+
+			// 对应的在view目录下加载的是以.ejs为后缀的文件
+
+// 尝试写一个路由
+	/admin
+		对应的routes目录下的admin.js
+			// 两个路由
+				/ localhost:3000/admin
+					在页面中加载 admin/index.ejs
+
+				/user localhost:3000/admin/user
+					在页面中加载 admin/user.ejs
+
+
+//修改依次node，就要node一下
+	安装模块 supervisor 监督模块，只要node发生改变，重新node
+	全局安装
+		npm -g install supervisor
+
+		之前启动node程序 node index.js
+		改成 supervisor index.js
+
+
+// express框架中所有的静态资源目录全部是从public目录出发的
+	<img src="/images/2.jpg">	访问 is public/images/2.jpg

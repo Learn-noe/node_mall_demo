@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加学员</title>
+</head>
+<body>
+	<center>
+		<a href="/index">查看学员</a> | <a href="/add">添加学员</a>
+		<hr>
+	</center>
+
+	<center>
+		<form action="/doAdd" method="post">
+			姓名：<input type="text" name="name"><br><br>
+			性别：<input type="radio" name="sex" value="1">男
+			<input type="radio" name="sex" value="2">女
+			<input type="radio" name="sex" value="3">保密<br><br>
+			年龄：<input type="text" name="age"><br><br>
+			<input type="submit" value="提交">
+		</form>
+	</center>
+</body>
+</html>

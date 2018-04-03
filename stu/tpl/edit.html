@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>修改学员信息</title>
+</head>
+<body>
+	<center>
+		<form action="/doUpdate" method="post">
+			<!-- 隐藏传值 -->
+			<input type="hidden" name="con" value="<%= name %>">
+			姓名：<input type="text" name="name" value="<%= name %>"><br><br>
+			性别：<input type="radio" name="sex" value="1"
+			<%
+						// 判断要不要输出checked
+
+				%>
+
+				<% if(sex=='1' || sex==1){%> 
+					checked
+				<%} %>
+				
+			>男
+			<input type="radio" name="sex" value="2"
+				<% if(sex=='2' || sex==2){%> 
+					checked
+				<%} %>
+			>女
+			<input type="radio" name="sex" value="3"
+				<% if(sex!=1 && sex!=2 && sex!='1' && sex!='2'){%> 
+					checked
+				<%} %>
+			>保密<br><br>
+			年龄：<input type="text" name="age" value="<%= age %>"><br><br>
+			<input type="submit" value="保存">
+		</form>
+	</center>
+</body>
+</html>
